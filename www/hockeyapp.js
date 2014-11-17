@@ -6,6 +6,12 @@ var hockeyapp = {
     },
     feedback:function(success, failure) {
         exec(success, failure, "HockeyApp", "feedback", []);
+    },
+    trackstart:function(success, failure) {
+        exec(success, failure, "HockeyApp", "trackstart", []);
+    },
+    trackpause:function(success, failure) {
+        exec(success, failure, "HockeyApp", "trackpause", []);
     }
 };
 

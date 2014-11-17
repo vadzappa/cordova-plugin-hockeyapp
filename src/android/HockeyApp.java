@@ -5,6 +5,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 
 import net.hockeyapp.android.FeedbackManager;
+import net.hockeyapp.android.Tracking;
 
 public class HockeyApp extends CordovaPlugin {
 
@@ -27,6 +28,26 @@ public class HockeyApp extends CordovaPlugin {
                         FeedbackManager.showFeedbackActivity(cordova.getActivity());
                     }
                 });
+                callbackContext.success();
+                return true;
+            }
+            else {
+                callbackContext.error("cordova hockeyapp plugin not initialized, call start() first");
+                return false;
+            }
+        } else if (action.equals("trackstart")) {
+            if(initialized) {
+                Tracking.startUsage(cordova.getActivity());
+                callbackContext.success();
+                return true;
+            }
+            else {
+                callbackContext.error("cordova hockeyapp plugin not initialized, call start() first");
+                return false;
+            }
+        } else if (action.equals("trackpause")) {
+            if(initialized) {
+                Tracking.stopUsage(cordova.getActivity());
                 callbackContext.success();
                 return true;
             }
